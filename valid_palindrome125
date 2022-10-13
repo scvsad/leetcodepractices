@@ -1,0 +1,50 @@
+class Solution {
+public:
+    bool isPalindrome(string s) {
+
+        if (s.empty()){
+            return true;
+        }
+        else if (s==" "){
+            return true;
+        }
+
+        else{
+            vector<char> s_vector(s.begin(),s.end());
+            int i=0;
+            cout<<s_vector.at(i)<<s_vector.size()<<endl;
+            while(i<s_vector.size()){
+                if (isalpha(s_vector.at(i))){
+                    s_vector.at(i)=tolower(s_vector.at(i));
+                    i++;
+                }
+
+                else {
+                    for (int j=i;j<s_vector.size()-1;j++){
+                        s_vector.at(j)=tolower(s_vector.at(j+1));
+                        //s_vector.assign(j,s_vector.at(j+1));
+                        //cout<<s_vector.at(j);
+                    }
+                    s_vector.pop_back();
+                    
+                }
+            }
+
+            int s_size=s_vector.size();
+            vector<char> s_reverse(s_size);
+            for (int i=0;i<s_size;i++){
+                s_reverse.at(i)=s_vector.at(s_size-i-1);
+            }
+
+            if (s_reverse==s_vector){
+                return true;
+            }
+
+            else{
+                return false;
+            }
+
+        }
+
+    }
+};
