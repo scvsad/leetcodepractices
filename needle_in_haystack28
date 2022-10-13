@@ -1,0 +1,37 @@
+class Solution {
+public:
+    int strStr(string haystack, string needle) {
+        vector<char> hay_vector(haystack.begin(),haystack.end());
+        vector<char> needle_vector(needle.begin(),needle.end());
+
+        bool needle_occur=false;
+        int result=0;
+        int j=0;
+        for(int i=0;i< hay_vector.size()-needle_vector.size();i++){
+
+            if( hay_vector.at(i)==needle_vector.at(0)){
+                result=i;
+                needle_occur=true;
+                while(j<needle_vector.size()){
+                    if(hay_vector.at(i+j)!=needle_vector.at(j)){
+                        needle_occur=false;
+                    }
+                    j++;
+                }
+            }
+        }
+
+        if (needle_occur==true){
+            return result;
+        }
+
+        else if(needle_occur==false){
+        return -1;
+        }
+
+        else{
+        return -1;
+        }
+        
+    }
+};
