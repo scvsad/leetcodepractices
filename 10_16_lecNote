@@ -1,0 +1,72 @@
+面试：
+1. 读题（出声）
+2. 标注input, 备注parameter/variable.
+3. 点明题目标出的解范围，讨论边界值。i.e. exactly one solution in two sum.
+    - assumption: range of input and output, more than one solution, extreme situation, communicate with interviewer.
+4. output: 考虑output的空值情况，声明output特殊情况。
+5. 想好用什么方式去做. i.e. brute force, big-o, O(n^2) for twosum.
+6. 知道怎么做优化： 告诉面试官为何这么做， 时间复杂度是多少，[i.e. binary search, hashmap(twosum)-O(1)]
+7. 不知道如何优化： 说明知道暴力枚举解法， 不知道optimal solution right now, do you want me start brute forcing or do we keep disussing
+  optimizing.
+    - may get hints
+    - communicate is important.
+8. 开始写答案时,多加comment：
+            - class Solution {
+            public:
+                //hints: i enter two inputs here
+                vector<int> twoSum(vector<int>& nums, int target) {
+
+                //innitialize variable.
+                    vector<int> sumIndexs;
+
+                //here using double loop to find target index
+                    for (int i=0; i<nums.size(); i++){
+                        for (int j=i+1; j<nums.size(); j++){
+                            //if (j!=i){
+                                int elementsSum=nums[i]+nums[j];
+
+                //indicate if the correct answer is reached, return sum index if yes.
+                                if (elementsSum == target){
+                                    sumIndexs.push_back(i);
+                                    sumIndexs.push_back(j);
+
+                                    // return correct answer
+                                    return sumIndexs;  
+                                }
+                            //}
+                        }
+                    }
+
+                //if null: return null.
+                    if (sumIndexs.empty()){
+                        return {};
+                    }
+                    else{
+                        return sumIndexs;
+                    }
+                }
+            };
+    
+    
+9. 注意边写边优化的过程也要保持交流。
+10. 判断边界值、空值情况，加入testing condition
+11. follows up: 面试完后，提出对优化解法的理解。
+12. binary search. double pointer, sliding window
+    -labuladong 框架记忆.
+    
+    react-redux 框架  albinotonnina- component
+    -提供状态容器， lets application run in any environment ( server side/ customer side )
+    
+    第 1 - 2 分钟完成自我介绍、热身。
+
+    第 3 - 10 分钟完成读题，完成 Clarification。
+
+    第 10 - 15 分钟交代解题思路，Dry-Run 一个样例，并分析复杂度。
+
+    第 15 - 25/30 分钟完成 Coding，并跑样例。
+
+    第 25/30 - 40 分钟完成 Follow Up。
+
+    第 40 - 45 分钟完成 Q&A。
+    
+    
