@@ -1,0 +1,53 @@
+class Solution {
+public:
+    string reverseWords(string s) {
+        //initialize variables
+        vector<char> s_char_vector(s.begin(),s.end());
+        vector<char> s_words;
+        vector<string> s_str_vector;
+        vector<string> final_string;
+        string space(" ");
+
+        //add space in end to simplify loop check steps
+        s_char_vector.push_back(' ');
+
+        //loop to go through each element in s
+        for (int i=0;i<s_char_vector.size();i++){
+            //if element is not space, continue finish recording word
+            if(s_char_vector.at(i)!=' '){
+                s_words.push_back(s_char_vector.at(i));
+            }
+
+            //if element is space, and a word is recorded, store word in vector
+            else{
+                if(!s_words.empty()){
+                    string single_word(s_words.begin(), s_words.end());
+                    s_str_vector.push_back(single_word);
+                    s_str_vector.push_back(space);
+                    s_words.clear();
+                }
+            }
+        }
+
+        //clear spaces in word storing vector
+        while(s_str_vector.back()==space){
+            s_str_vector.pop_back();
+        }
+        
+        //construct word string from back of the storing vector
+        while(!s_str_vector.empty()){
+            string word_holder=s_str_vector.back();
+            s_str_vector.pop_back();
+            final_string.push_back(word_holder);
+        }
+
+
+        //convert final return string from the vector of strings
+        string final_return;
+        final_return=accumulate(begin(final_string),end(final_string),final_return);
+        cout<<final_return;
+
+        return final_return;
+
+    }
+};
