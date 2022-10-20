@@ -25,6 +25,7 @@ public:
             else if (s_vector.at(i)=='-'){
                 s_charof_int.push_back(s_vector.at(i));
             }
+            
 
             // if digit, record, if 0 before anything recorded do nothing
             else if (isdigit(s_vector.at(i))){
@@ -39,8 +40,13 @@ public:
             }
 
             // if alphabet and there is record, end element look through
-            if (!s_charof_int.empty() && isalpha(s_vector.at(i))){
-                i=s_vector.size();
+            if (isalpha(s_vector.at(i))){
+                if (!s_charof_int.empty()){
+                    i=s_vector.size();
+                }
+                else{
+                    return 0;
+                }
             }
 
         }
