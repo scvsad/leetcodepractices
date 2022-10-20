@@ -1,0 +1,55 @@
+class Solution {
+public:
+    int myAtoi(string s) {
+        // initialize parameters
+        vector<char> s_vector(s.begin(),s.end());
+        vector<char> s_charof_int;
+        string strof_num;
+        stringstream ss;
+        int num_return;
+
+
+        // check if given string is empty
+        if (s_vector.empty()){
+            return 0;
+        }
+
+        // go through elements in string vector
+        for (int i=0;i<s_vector.size();i++){
+            // if space do nothing
+            if (s_vector.at(i)==' '){
+
+            }
+
+            // if negative record
+            else if (s_vector.at(i)=='-'){
+                s_charof_int.push_back(s_vector.at(i));
+            }
+
+            // if digit, record, if 0 before anything recorded do nothing
+            else if (isdigit(s_vector.at(i))){
+
+                if (s_vector.at(i)=='0' && s_charof_int.empty()){
+
+                }
+
+                else{
+                    s_charof_int.push_back(s_vector.at(i));
+                }
+            }
+
+            // if alphabet and there is record, end element look through
+            if (!s_charof_int.empty() && isalpha(s_vector.at(i))){
+                i=s_vector.size();
+            }
+
+        }
+
+        //convert vector of char to num
+        strof_num=accumulate(s_charof_int.begin(),s_charof_int.end(),strof_num);
+        ss<<strof_num;
+        ss>>num_return;
+
+        return num_return;
+    }
+};
