@@ -1,0 +1,74 @@
+class Solution {
+public:
+    bool isNumber(string s) {
+     // initialize parameters
+        vector<char> s_vector(s.begin(),s.end());
+        vector<char> s_charof_int;
+        bool eFlag = false;
+        bool dotFlag = false;
+        bool signFlag = false;
+        bool finalReturn=false;
+        string strof_num;
+        // check if given string is empty
+        if (s_vector.empty()){
+            return false;
+        }
+        
+        // go through elements in string vector
+        for (int i=0;i<s_vector.size();i++){
+
+            // detect scientific notation
+            if (isalpha(s_vector.at(i))){
+                if (s_vector.at(i)!='e' || 'E'){
+                    return false;
+                }
+
+                else {
+                    if (!eFlag){
+                        eFlag=true;
+                    }
+                    else{
+                        return false;
+                    }
+                }
+                
+            }
+
+            // if space do nothing
+            if (s_vector.at(i)==' '){
+               
+            }
+
+            // if negative, detect if first sign then record
+            if (s_vector.at(i)=='-'){
+                if (!signFlag){
+                    signFlag=true;
+                    s_charof_int.push_back(s_vector.at(i));
+                }
+                else{
+                    return false;
+                }
+            }
+
+            // if dot detect if nums have been recorded, also if first dot, then record
+            if (s_vector.at(i)=='.'){
+                if ((!dotFlag)&&(s_charof_int.empty()==false)){
+                    dotFlag=true;
+                    s_charof_int.push_back(s_vector.at(i));
+                }
+                else{
+                    return false;
+                }
+            }
+            
+            if (isdigit(s_vector.at(i))){
+                    s_charof_int.push_back(s_vector.at(i));
+                    if (i==s_vector.size()){
+                        return true;
+                    }
+            }
+        }
+
+        return true;
+    }
+};
