@@ -1,0 +1,26 @@
+class Solution {
+public:
+    string reverseWords(string s) {
+        char a[s.size()+1];
+        string result;
+        strcpy(a, s.c_str());
+        
+        char *tok = strtok(a, " ");
+
+        while(tok!=NULL){
+            //printf("%s\n", tok);
+            if (result.empty()){
+                result+=string(tok)+result;
+            }
+            else{
+                result= string(tok) + " " +result;
+            }
+            
+            tok = strtok(NULL, " ");
+        }
+
+        return result;
+
+    }
+
+};
