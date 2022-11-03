@@ -1,0 +1,38 @@
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        if (s.empty()){
+            return 0;
+        }
+
+        else{
+            char a[s.size()+1];
+            strcpy(a,s.c_str());
+            vector<char> temp1, temp2;
+
+            temp1.push_back(a[0]);
+            temp2=temp1;
+
+            for (int i=0;i<sizeof(a);i++){
+                if (find(temp1.begin(),temp1.end(),a[i]) != temp1.end()){
+                    if (temp1.size() >= temp2.size()){
+                        temp2=temp1;
+                    }
+                    temp1.clear();
+                    temp1.push_back(a[i]);
+                }
+                else{
+                    temp1.push_back(a[i]);
+                }
+                
+            }
+
+            for (int k=0; k<temp2.size(); k++){
+                cout<<temp2.at(k);
+            }
+            
+            return temp2.size();
+        }
+        
+    }
+};
