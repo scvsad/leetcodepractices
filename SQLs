@@ -1,0 +1,66 @@
+175. Combine Two Tables
+
+    # Write your MySQL query statement below
+
+    SELECT Person.FirstName, Person.LastName, Address.city, Address.state 
+
+    FROM Person 
+    LEFT JOIN Address
+    ON Person.PersonID = Address.PersonId;
+
+
+181. Employees Earning More Than Their Managers
+
+    # Write your MySQL query statement below
+
+    #out put column name is Employee, no original column named Employee, so create new table column named 'Employee'
+
+    SELECT e.name as Employee
+
+    #only one table source, add it
+        #FROM employee
+
+    #to compare internal value of table, use INNER JOIN, like creating a duplicate table
+    FROM Employee e
+        #INNER JOIN Employee m
+
+    #select the employees that has an ID of their manager, which means they are not managers
+    INNER JOIN Employee m ON m.id=e.managerId
+
+    #specify the condition for SELECT
+    WHERE e.salary > m.salary
+    
+182. Duplicate Emails
+
+    # Write your MySQL query statement below
+    select Email
+    from Person
+
+
+    #group by puts all results with same name/condition in 1 row
+    group by Email
+
+    #having similar to WHERE, is the condition syntax used for GROUP BY
+    having count(Email) > 1;
+
+
+
+183. Customers Who Never Order
+    # Write your MySQL query statement below
+    # AS is to give the output's column name
+    SELECT name AS Customers 
+    FROM Customers
+
+    #LEFT JOIN here means the operation takes result from the previous(base) table, the joined table is the comparee table
+    LEFT JOIN Orders
+
+    #defines which columns are joined from comparison
+    ON Customers.id = Orders.customerId
+
+    #specify condition of what the JOIN returns, in this case the ones who have NULL value (not showing up) in Orders.customerID
+    WHERE Orders.customerID IS NULL
+
+
+196. Delete Duplicate Emails
+
+
