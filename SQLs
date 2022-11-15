@@ -87,7 +87,7 @@
     
 586. Customer Placing the Largest Number of Orders
     
-    #use WITH a AS () method to save result from an operation, to operate later on
+#use WITH xxx AS () method to save result from an operation, to operate later on
     with temp as(
         SELECT *,
         COUNT(customer_number) AS a
@@ -99,4 +99,23 @@
     FROM temp
     WHERE a = (SELECT MAX(a) FROM temp )
 
+===================================================================================
+
+#to continuously operate on further results, linearly continue WITH xxx AS to save result from last operation
+with temp as(
+    SELECT *,
+    COUNT(customer_number) AS a
+    FROM Orders
+    GROUP BY customer_number
+)
+    
+with temp2 as（
+    SELECT customer_number
+    FROM temp
+    WHERE a = (SELECT MAX(a) FROM temp )
+）
+
+SELECT ...
+FROM ...
+=====================================================================
 
