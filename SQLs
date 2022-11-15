@@ -67,7 +67,36 @@
         #specify condition for DELETE command
     WHERE A.id>B.id AND A.email=B.email
     
+
+197. Rising Temperature
+    
+        #perform SELECT on created 'weather'templates A, and create operation object B.
+    SELECT A.id
+    FROM Weather AS A, Weather AS B
+        #specify condition on the parts to select, note DATEDIFF syntax.
+    WHERE A.temperature >B.temperature AND DATEDIFF(A.recordDate, B.recordDate) = 1
+    
+    
+584. Find Customer Referee
+    
+    SELECT name  
+    FROM Customer
+    where referee_id != 2;
     
     
     
+586. Customer Placing the Largest Number of Orders
+    
+    #use WITH a AS () method to save result from an operation, to operate later on
+    with temp as(
+        SELECT *,
+        COUNT(customer_number) AS a
+        FROM Orders
+        GROUP BY customer_number
+    )
+
+    SELECT customer_number
+    FROM temp
+    WHERE a = (SELECT MAX(a) FROM temp )
+
 
