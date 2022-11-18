@@ -119,3 +119,27 @@ SELECT ...
 FROM ...
 =====================================================================
 
+176. Second Highest Salary
+
+
+    SELECT MAX(Salary) as SecondHighestSalary
+    FROM Employee
+    WHERE Salary < (SELECT MAX(Salary) FROM Employee)
+
+177. Nth Highest Salary
+
+    CREATE FUNCTION getNthHighestSalary(N INT) RETURNS INT
+    BEGIN
+        SET N = N - 1;
+      RETURN (
+          SELECT DISTINCT salary
+          FROM Employee
+          ORDER BY salary DESC
+          LIMIT 1 OFFSET N
+
+      );
+    END
+    
+    
+    
+    
