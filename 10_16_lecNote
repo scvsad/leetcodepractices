@@ -88,3 +88,28 @@ mango db, non-sql， 门槛低， 科技公司里广泛使用， 应用场景：
 6. jsx, 
 state, 
 props,
+
+
+组件之间传递3种：
+1. parent passing to children: using props
+2. children to parent: using callback
+3. children to children: childrent to parent, then parent to children, (callback then props)
+不用redux之前， children之间很麻烦， redux就为解决这个问题出现。 redux是个状态 state 管理器， 数据管理器，类似于一个数据库，父子组件都会从这里调用数据
+redux: action, container, reducer,
+
+纯后端：java, c++可写， 用sql调用， 会与前段分离， 大项目基本会用这种方式。门槛比较高， 维护成本比较高， 需要专门前后端工程师分离编写。
+amazon cloud 源于amazon出租其空闲服务器， 在黑五等高峰期之外， 创收出租提供服务。 分私有云、公有云。 银行会租用私有云。
+
+
+前后结合：（全栈JS） 全用js写， 主用mango db， MERN， mangodb express, react node js， 适用于startup, 新项目， 大公司写新项目， 偏ai的项目都会用这种方式，因为cost会更低。属于cloud database
+
+
+如果您的应用符合以下某些条件，那么我认为应该立即使用 Redux。
+    UI 可以根据应用程序状态显着变化
+    并不总是以一种线性的，单向的方式流动
+    许多不相关的组件以相同的方式更新状态
+    状态树并不简单
+    状态以许多不同的方式更新
+    您需要能够撤消以前的用户操作
+
+
