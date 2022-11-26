@@ -113,3 +113,77 @@ amazon cloud 源于amazon出租其空闲服务器， 在黑五等高峰期之外
     您需要能够撤消以前的用户操作
 
 
+BST
+规则：
+1.node's left child must be less than node it self.
+2.node's right child must be greater than node it self.
+3.左右 sub tree must be BST
+
+
+红黑树：
+弱-自平衡 binary search tree
+规则： 
+1.每个节点都是 红色 或 黑色.
+2.树的root始终是黑色的
+3.没有两个相邻的红节点(no parent-child adjacent red)，黑节点可以相邻。
+4.从节点到任何children的空节点的每条路径都具有相同数量的黑色节点
+5.新加节点会通过 recolor + rotation, 新节点一定是红色起始, 
+6.特色: 从root 到 leaf的最长路径 <= 2x最短路径, 确保没有任何路径比其他路径长两倍, 所以红黑树的旋转次数会比AVL少. 任何不平衡都会在三次旋转内解决, 所以他的insert效率更高.
+7.适用于搜索, 插入, 删除多的情况, 旋转少等于cost少.
+8.应用:  C++:     map, set
+        Java:    treemap
+        Linux:   虚拟内存管理 (对搜索效率要求很高)
+9.
+        
+
+(recolor 是为了方便 rotation 操作的逻辑链.)
+
+
+
+红黑树应用场景:
+保证最坏情况下O(log N)完成 查找, 插入, 和删除.
+BST 不是balanced, 只限制了left 和 right children 的大小关系.
+只有在平衡的BST下, 它的时间复杂度才是O(log N).
+非平衡下BST ~= 链表, 查找退化为O(N). 因此出现balanced BST
+红黑树为染色红黑的 balanced BST
+
+AVL Tree 一种自平衡, 不染色的BST (适用于纯查找)
+1.为了保证查询速度, 它会不断插入并删除不必要的查询(因为没有满足平衡条件,就要需要旋转保持平衡,旋转非常消耗时间所以速度较慢), 所以他的树改变非常多.
+2.适用于查找多的情况, 不适用插入多的情况.
+3.TIME COMPLEXITY O(log 2^N).
+4.局限性: 计算机领域中 AVL 很少用到. 维护AVL的高度平衡, 会付出巨大代价, 所以收益不大, 实际应用没有太多好处.
+
+
+
+linked list:
+doublinked list parameters: previous, value, after. 可以自己删自己.
+single linked list parameters: value, after. 删除自己需要一个temp, 需要一轮查找.
+已分配内存满后,新增数值在同一function (list.next)访问, 只需要O(1)链接新的memory unit.
+对QUEUE, STACK, GRAPH, TREE是基础, 
+优势:
+    动态数据结构: 运行时自动增减占用内存, 无浪费, 不需要预先分配. 
+    容易执行插入和删除操作.
+    
+缺点:
+    相比array,需要更多的搜索时间去访问特定节点, 遍历特别复杂.
+
+
+array list:
+已分配内存满后,新增数值在同一array访问, 需要遍历一遍并copy到新的memory block.
+
+100, 110, O(1)- if new index within range.
+                yes = ok
+                no = array.next
+
+
+
+
+
+
+
+
+
+
+
+
+
