@@ -1,8 +1,11 @@
+// create datatype node, stores value, and have pointers link its prev and next nodes
 class Node{
     public:
         int val;
         Node* next;
         Node* prev;
+        
+        //constructor, when new node is created, take in and initialize its value only, leave node links to be operated
         Node (int x) {
             val=x;
             next=nullptr;
@@ -16,12 +19,13 @@ public:
         Node* head;
         int size;
 
-
+// class creator, start with a head data and size parameter of 0
     MyLinkedList() {
         head= nullptr;
         size= 0;
     }
     
+// when getting certain node, do index number of iteration of moving from pointer to its next to reach it.
     int get(int index) {
         if (index>= size || index<0){
             return -1;
@@ -33,6 +37,7 @@ public:
         return current->val;
     }
     
+// add at head and tail are equivalent to add at 0 and size()
     void addAtHead(int val) {
         addAtIndex(0,val);
     }
@@ -40,26 +45,31 @@ public:
     void addAtTail(int val) {
         addAtIndex(size,val);
     }
-    
+
+
     void addAtIndex(int index, int val) {
+    //valid check
         if (index>size || index <0){
             return;
         }
-
+    //create a temp (current) node to do iteration tracking
         Node* current= head;
+    //create the inserted node with value provided.
         Node* new_node=new Node(val);
 
+    //this is add at head case.
         if (index==0){
             new_node->next = current;
             head = new_node;
         }
-
+    
+    //jump x steps to reach to the node which new node will be inserted after.
         else{
             for (int i=0; i<index-1; ++i){
                 current= current->next;
             }
 
-            //new_node->prev=current->prev;
+            new_node->prev=current->prev;
             new_node->next=current->next;
             current->next=new_node;
         }
@@ -68,7 +78,7 @@ public:
     }
         
     
-    
+//reach the node to be deleted first, link its prev and nexts nodes to each other, then delete current
     void deleteAtIndex(int index) {
         if (index>=size || index<0){
             return;
@@ -89,10 +99,12 @@ public:
             Node* nextNode= current->next->next;
             delete current->next;
             current->next=nextNode;
+            nextNode->prev=current;
         }
         size--;
     }
 
+//when deleting this class, delete the entire chain of linked nodes.
     ~MyLinkedList(){
         Node *p = head;
         while (head!=nullptr){
