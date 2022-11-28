@@ -1,0 +1,40 @@
+class Solution {
+public:
+    
+
+    bool isValid(string s) {
+
+        if (s.size()%2!=0){
+            return false;
+        }
+
+        stack<char> string_stack;
+
+        for(int i=0; i<s.size();i++){
+            if(s.at(i)=='{' || s.at(i)=='[' || s.at(i)=='('){
+                string_stack.push(s.at(i));
+            }
+
+            else if (string_stack.size()>0 && s.at(i)==')' && string_stack.top()=='(' || string_stack.size()>0 && s.at(i)=='}' && string_stack.top()=='{' || string_stack.size()>0 && s.at(i)==']' && string_stack.top()=='['){
+
+                    string_stack.pop();
+
+            }
+
+            //cout<<string_stack.top()<<endl;
+            else{
+                return false;
+            }
+
+        }
+
+        if(string_stack.size()>0){
+            return false;
+        }
+
+        else{
+            return true;
+        }
+
+    }
+};
