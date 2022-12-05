@@ -113,12 +113,22 @@ amazon cloud 源于amazon出租其空闲服务器， 在黑五等高峰期之外
     您需要能够撤消以前的用户操作
 
 
+Binary Search Tree
 BST
 规则：
 1.node's left child must be less than node it self.
 2.node's right child must be greater than node it self.
 3.左右 sub tree must be BST
 
+Balanced Tree
+B & B+ tree是为了磁盘的存储设计的一种平衡的多路查找树, 不是二叉树
+B树为多路搜索树，深度低，搜索数据时磁盘IO较少，多用于索引外存数据，只支持随机访问，不支持顺序访问；
+B+树是对B树的改进，内节点不保存数据地址指针（可保存更多关键字），内节点可看做为外节点的索引，所有数据地址存储在外节点，数据搜索效率一致。外节点依关键字组成顺序链表，支持区间搜索，且空间局部性好，缓存命中率高;
+B , B+更适合磁盘的读取, 和数据库的磁盘存储.
+二叉查找树(BST)的结构不适合数据库, 红黑树是一个高效的查找算法
+
+
+相同的节点情况下, B, B+树的高度远小于红黑树的高度, 因为他们不是二叉树, 
 
 红黑树：
 弱-自平衡 binary search tree
@@ -141,6 +151,8 @@ BST
 
 
 红黑树应用场景:
+更适合内存查找
+红黑树为二叉自平衡搜索树，深度大，多用于内存排序；
 保证最坏情况下O(log N)完成 查找, 插入, 和删除.
 BST 不是balanced, 只限制了left 和 right children 的大小关系.
 只有在平衡的BST下, 它的时间复杂度才是O(log N).
@@ -152,6 +164,13 @@ AVL Tree 一种自平衡, 不染色的BST (适用于纯查找)
 2.适用于查找多的情况, 不适用插入多的情况.
 3.TIME COMPLEXITY O(log 2^N).
 4.局限性: 计算机领域中 AVL 很少用到. 维护AVL的高度平衡, 会付出巨大代价, 所以收益不大, 实际应用没有太多好处.
+
+MySQL有四种查找方式,
+暴力, 索引查找(index), 键查找(HASH), BST(B,B+树的基础算法)针对磁盘
+区别: hash虽然效率高, 但他没有部分查找和范围查找, 红黑树的访问速率内存>SSD(SOLID STATE DRIVE)>磁盘
+    数据库底层用B,B+树延长磁盘硬件寿命
+        MangoDB -   B树,
+        MySQL   -   B+tree, 比MangoDB的 范围查找 和 遍历 的效率更高,
 
 
 
