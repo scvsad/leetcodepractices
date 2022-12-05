@@ -90,6 +90,7 @@ state,
 props,
 
 
+
 组件之间传递3种：
 1. parent passing to children: using props
 2. children to parent: using callback
@@ -111,6 +112,11 @@ amazon cloud 源于amazon出租其空闲服务器， 在黑五等高峰期之外
     状态树并不简单
     状态以许多不同的方式更新
     您需要能够撤消以前的用户操作
+
+Redis - No SQL Database
+处理速度非常快
+缓存系统, 大型软件后台一般是mysql, 可以持续化的使用, 加用redis做缓存, 还可以做社交网络的热搜, 它支持高频读低频写, 还有实时系统, 
+
 
 
 Binary Search Tree
